@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep AI - Clean Soft Brutalism</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --bg-body: #F0F9FF; /* Biru sangat muda / hampir putih */
+            --bg-white: #FFFFFF;
+            --primary-blue: #2563EB; /* Biru utama */
+            --light-blue: #DBEAFE; /* Biru pastel untuk bubble chat */
+            --border-color: #1E3A8A; /* Biru dongker untuk border */
+            --border-width: 2px; /* Border lebih tipis (Soft) */
+            --box-shadow: 4px 4px 0px #1E3A8A; /* Shadow lebih kalem */
+            --box-shadow-sm: 2px 2px 0px #1E3A8A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--border-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--bg-white);
+            border-bottom: var(--border-width) solid var(--border-color);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+        }
+
+        .header-title svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary-blue);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* MAIN CHAT CONTAINER */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--bg-white);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 70vh;
+        }
+
+        /* CHAT BOX AREA */
+        .chat-box {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            background: var(--bg-white);
+        }
+
+        .chat-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            max-width: 90%;
+        }
+
+        .chat-row.user-row {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .chat-row.ai-row {
+            align-self: flex-start;
+        }
+
+        /* AVATAR */
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            background: var(--bg-white);
+        }
+
+        .avatar svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--border-color);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .user-row .avatar { background: var(--light-blue); }
+        .ai-row .avatar { background: var(--primary-blue); }
+        .ai-row .avatar svg { stroke: var(--bg-white); }
+
+        /* MESSAGE BUBBLE */
+        .message {
+            padding: 14px 18px;
+            border: var(--border-width) solid var(--border-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            box-shadow: var(--box-shadow-sm);
+            word-wrap: break-word;
+            border-radius: 12px;
+            color: #000;
+        }
+
+        .message.user {
+            background-color: var(--light-blue);
+            border-top-right-radius: 2px;
+        }
+
+        .message.ai {
+            background-color: var(--bg-white);
+            border-top-left-radius: 2px;
+        }
+
+        /* TYPING INDICATOR */
+        .typing {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #64748B;
+            background: var(--bg-body);
+            padding: 8px 16px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 20px;
+            align-self: flex-start;
+            display: none;
+            margin-left: 48px;
+        }
+
+        /* INPUT AREA */
+        .input-area {
+            display: flex;
+            padding: 16px;
+            background: var(--bg-body);
+            border-top: var(--border-width) solid var(--border-color);
+            gap: 12px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-area input:focus {
+            background-color: var(--bg-white);
+        }
+
+        .input-area button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 8px;
+            padding: 0 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--box-shadow-sm);
+            transition: all 0.1s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-area button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border-color);
+        }
+
+        .input-area button svg {
+            width: 18px; height: 18px; stroke: white; stroke-width: 2; fill: none;
+        }
+
+        /* CODE BLOCK STYLING (THE MAGIC) */
+        .code-wrapper {
+            margin: 12px 0;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-white);
+        }
+
+        .code-header {
+            background: var(--light-blue);
+            border-bottom: var(--border-width) solid var(--border-color);
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--border-color);
+            text-transform: uppercase;
+        }
+
+        .copy-btn {
+            background: var(--bg-white);
+            color: var(--border-color);
+            border: var(--border-width) solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 2px 2px 0px var(--border-color);
+            transition: all 0.1s;
+        }
+
+        .copy-btn:active {
+            box-shadow: 0px 0px 0px var(--border-color);
+            transform: translate(2px, 2px);
+        }
+
+        .copy-btn svg {
+            width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none;
+        }
+
+        .code-wrapper pre {
+            margin: 0;
+            padding: 16px;
+            overflow-x: auto;
+            background: #F8FAFC;
+        }
+
+        .code-wrapper code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        /* CLEAN FOOTER */
+        .footer {
+            background: var(--bg-white);
+            border-top: var(--border-width) solid var(--border-color);
+            padding: 30px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-info {
+            max-width: 500px;
+        }
+
+        .footer-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .footer-info p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        .api-url {
+            display: inline-block;
+            background: #F1F5F9;
+            padding: 8px 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--border-color);
+        }
+
+        .wa-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-white);
+            color: var(--border-color);
+            text-decoration: none;
+            padding: 10px 16px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--box-shadow-sm);
+            transition: all 0.1s ease;
+        }
+
+        .wa-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border-color);
+        }
+
+        .wa-btn svg {
+            width: 20px; height: 20px; fill: #25D366;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Clean -->
+    <header class="header">
+        <div class="header-title">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Deep AI Studio
+        </div>
+        <a href="https://whatsapp.com/channel/0029Vb89VkwLNSZyIqpdbX3t" target="_blank" class="wa-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Join Saluran
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box">
+                <!-- Pesan Pembuka AI -->
+                <div class="chat-row ai-row">
+                    <div class="avatar">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>
+                    </div>
+                    <div class="message ai">
+                        Halo bro! Saya Deep AI. Kalau kamu butuh bantuan nulis kode, artikel, atau ngobrol, ketik aja di bawah. Kodenya nanti bisa langsung di-copy!
+                    </div>
+                </div>
+                
+                <div class="typing" id="typing-indicator">Deep AI sedang mengetik...</div>
+            </div>
+
+            <!-- Input Form -->
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Tanyakan sesuatu atau suruh buat kode..." autocomplete="off" />
+                <button id="send-btn">
+                    Kirim
+                    <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimalist Footer -->
+    <footer class="footer">
+        <div class="footer-info">
+            <h3>Tentang Project Deep AI</h3>
+            <p>Antarmuka web ini mengadopsi gaya desain <strong>Soft Neo-Brutalism</strong> yang rapi, bersih, dan fokus pada kenyamanan membaca. Memiliki fitur otomatis format kode pemrograman (HTML, CSS, JS, Python, dll).</p>
+            <div class="api-url">API: https://api-faa.my.id/faa/deep-ai</div>
+        </div>
+        
+        <div>
+            <span style="font-size: 0.85rem; font-weight: 600; color: #64748B;">Created & Maintained by Faa</span>
+        </div>
+    </footer>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        // Ikon SVG untuk Bubble Chat
+        const userIcon = `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+        const aiIcon = `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>`;
+
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // FUNGSI COPY CODE
+        function copyCode(btnElement) {
+            // Ambil text dari atribut data-code
+            const codeToCopy = decodeURIComponent(btnElement.getAttribute('data-code'));
+            
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+                const originalHTML = btnElement.innerHTML;
+                btnElement.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+                btnElement.style.color = "#10B981"; // Ubah jadi hijau
+
+                setTimeout(() => {
+                    btnElement.innerHTML = originalHTML;
+                    btnElement.style.color = "";
+                }, 2000);
+            }).catch(err => {
+                console.error("Gagal menyalin kode", err);
+            });
+        }
+
+        // FUNGSI PARSING MARKDOWN KE HTML (Ubah Teks Bot Jadi Rapi)
+        function formatMarkdown(text) {
+            let codeBlocks = [];
+            
+            // 1. Ekstrak blok kode (```bahasa ... ```) dan simpan sementara
+            let processedText = text.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
+                let id = codeBlocks.length;
+                codeBlocks.push({ lang: lang || 'code', code: code });
+                return `___CODEBLOCK_${id}___`;
+            });
+
+            // 2. Escape HTML untuk teks biasa biar nggak error
+            processedText = processedText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            // 3. Format bold (**teks**) dan enter baru (\n)
+            processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            processedText = processedText.replace(/\n/g, '<br>');
+
+            // 4. Masukkan kembali blok kode dengan desain UI khusus
+            processedText = processedText.replace(/___CODEBLOCK_(\d+)___/g, function(match, id) {
+                let block = codeBlocks[id];
+                // Escape HTML khusus yang ada di dalam blok kode agar tampil sebagai kode (bukan elemen web)
+                let escapedCode = block.code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                
+                return `
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span>${block.lang}</span>
+                            <button class="copy-btn" data-code="${encodeURIComponent(block.code)}" onclick="copyCode(this)">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy
+                            </button>
+                        </div>
+                        <pre><code>${escapedCode}</code></pre>
+                    </div>
+                `;
+            });
+
+            return processedText;
+        }
+
+        // FUNGSI TAMBAH PESAN KE LAYAR
+        function appendMessage(text, sender) {
+            const rowDiv = document.createElement('div');
+            rowDiv.classList.add('chat-row', sender === 'user' ? 'user-row' : 'ai-row');
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.classList.add('avatar');
+            avatarDiv.innerHTML = sender === 'user' ? userIcon : aiIcon;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            
+            // Panggil fungsi pemformatan teks hanya untuk AI
+            if (sender === 'ai') {
+                messageDiv.innerHTML = formatMarkdown(text);
+            } else {
+                messageDiv.innerText = text;
+            }
+            
+            rowDiv.appendChild(avatarDiv);
+            rowDiv.appendChild(messageDiv);
+
+            chatBox.insertBefore(rowDiv, typingIndicator);
+            scrollToBottom();
+        }
+
+        // FUNGSI MENGIRIM PESAN
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            userInput.value = '';
+            
+            typingIndicator.style.display = 'block';
+            scrollToBottom();
+
+            try {
+                // Fetch API
+                const apiUrl = `https://api-faa.my.id/faa/deep-ai?text=${encodeURIComponent(text)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                typingIndicator.style.display = 'none';
+
+                if (data.status && data.result) {
+                    appendMessage(data.result, 'ai');
+                } else {
+                    appendMessage("Maaf, terjadi kesalahan pada respon server.", 'ai');
+                }
+            } catch (error) {
+                typingIndicator.style.display = 'none';
+                appendMessage("Koneksi gagal. Periksa jaringan internet atau server API.", 'ai');
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+          </html>
