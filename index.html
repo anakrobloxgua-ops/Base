@@ -141,6 +141,7 @@
       gap:6px;
       padding:6px 10px;
       margin-left:auto;
+      margin-top:-12px;
     }
 
     .security-svg{
@@ -277,9 +278,10 @@
       border:3px solid var(--primary-dark);
       box-shadow:4px 6px 0 var(--primary-dark);
       padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+      display:grid;
+      grid-template-columns: 60px 1fr;
+      gap:14px 14px;
+      align-items:start;
     }
 
     .boxicon-sosmed{
@@ -291,6 +293,8 @@
       align-items:center;
       justify-content:center;
       flex-shrink:0;
+      grid-column:1;
+      grid-row:1;
     }
 
     .iconsosmed-svg{
@@ -300,12 +304,14 @@
     }
 
     .sesitext-sosmed{
-      width:min(100%, 520px);
+      width:100%;
       display:flex;
       flex-direction:column;
       gap:6px;
       align-items:flex-start;
       padding:0 2px;
+      grid-column:2;
+      grid-row:1;
     }
 
     .text-sosmed{
@@ -335,6 +341,7 @@
       display:flex;
       align-items:center;
       gap:14px;
+      grid-column:1 / -1;
     }
 
     .iconwhtsp-sosmed{
@@ -394,6 +401,9 @@
       gap:6px;
       padding:8px 12px;
       border-radius:2px;
+      grid-column:1 / -1;
+      justify-self:start;
+      margin-left:18px;
     }
 
     #joinSluran span{
@@ -422,6 +432,9 @@
       justify-content:center;
       padding:8px 12px;
       border-radius:2px;
+      grid-column:1 / -1;
+      justify-self:start;
+      margin-left:18px;
     }
 
     #followTT span{
@@ -509,6 +522,11 @@
         font-size:11px;
       }
 
+      .box-sosmed{
+        grid-template-columns: 52px 1fr;
+        gap:12px;
+      }
+
       .whatsapp-sosmed,
       .tiktok-sosmed{
         padding:12px;
@@ -518,6 +536,11 @@
       .whatsapp-text,
       .tiktok-text{
         font-size:15px;
+      }
+
+      #joinSluran,
+      #followTT{
+        margin-left:12px;
       }
 
       .petunjuk{
