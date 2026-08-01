@@ -4,503 +4,674 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SHARE DOCUMENT RPZY</title>
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
-  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --primary:#4F46E5;
+      --primary-dark:#4A1D96;
+      --accent:#67E8F9;
+      --success:#4ADE80;
+      --text:#000;
+      --muted:#4B5563;
+      --bg:#FAFAFA;
+      --grid:rgba(0,0,0,.05);
+      --shadow:4px 4px 0 var(--primary-dark);
+      --shadow-soft:4px 6px 0 var(--primary-dark);
+    }
+
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
     }
 
+    html{
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
     body{
       min-height:100vh;
-      background:#F5F5F5;
-      color:#000;
-      font-family:Arial, sans-serif;
       overflow-x:hidden;
-      background:#FAFAFA;
+      font-family:Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
       background-image:
-        linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px);
-    background-size:32px 32px;
-    }
-    
-    .marquee-box {
-    width:553px;
-    height:45px;
-    background:#4F46E5;
-    border-radius:1px;
-    padding:15px;
-    color:#fff;
-    padding-top: 10px;
-    outline: 5px solid black;
-    transform:translateY(5px);
-}
-
-    .marquee-text {
-      transform: translateX(11px);
-      font-size: 19px;
-      font-family: "Share Tech Mono", monospace;
-    }
-    
-    .nama-kotak {
-      width:212px;
-      height:20px;
-      background:#4F46E5;
-      border-radius: 1px;
-      padding:20px;
-      color:#fff;
-      text-align: center;
-      transform:translateY(-5px);
-      box-shadow: 4px 3px 0 #4A1D96;
-      border:3px solid #4A1D96;
-    }
-    
-    .text-nama {
-      display: inline-block;
-      transform:translateY(-12px) translateX(-4px);
-      font-size: 19px;
-      font-family: "Orbitron", Sans-Serif;
-    }
-    
-    .kotak-bungkus {
-    width:525px;
-    height:80px;
-    background: #fff;
-    border-radius:3px;
-    padding:20px;
-    color:#fff;
-    transform:translateY(37px) translateX(14px);
-    box-shadow: 5px 5px 0 #4A1D96;
-    border:3px solid #4A1D96;
-    }
-    
-    .color-system {
-      color: #67E8F9;
-    }
-    
-    .security-box {
-      width: 188px;
-      height: 35px;
-      background: #4F46E5;
-      transform:translateY(-21px) translateX(338px);
-      box-shadow: 3px 4px 0 #4A1D96;
-      border:3px solid #4A1D96;
-    }
-    
-    .security-text {
-      display: inline-block;
-      font-family: "Orbitron", monospace;
-      transform:translateX(-2px) translateY(-10px);
-      font-size: 12px;
-      color: #fff;
-    }
-    
-    .text-warna-security {
-      color:#4ADE80;
-    }
-    
-    .perkenalan {
-      width: 525px;
-      height: 470px;
-      background: #fff;
-      box-shadow: 4px 4px 0 #4A1D96;
-      border:3px solid #4A1D96;
-      transform:translateY(50px) translateX(17px);
-    }
-    
-    .img-perkenalan{
-    width:140px;
-    height:140px;
-
-    border:3px solid #4A1D96;
-    box-shadow:4px 4px 0 #4A1D96;
-
-    animation:breathe 4s ease-in-out infinite;
-}
-
-  @keyframes breathe{
-
-    0%,100%{
-        transform:translateX(180px) translateY(45px) scale(1);
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size:32px 32px;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
     }
 
-    50%{
-        transform:translateX(180px) translateY(39px) scale(1.02);
+    img,
+    svg{
+      max-width:100%;
+      height:auto;
+      display:block;
     }
 
-}
-
-    .nama-perkenalan {
-      font-size: 21px;
-      font-family: "Orbitron", monospace;
-      transform:translateX(230px) translateY(-270px);
-    }
-    
-   
-    .security-svg {
-      color: lime;
-    }
-    
-    .umur-ultah {
-      transform:translateX(5px);
-      color: #4A1D96;
-    }
-    
-    .umur-perkenalan {
-      width: 230px;
-      height: 25px;
-      background: #fff;
-      outline: 2px solid #4A1D96;
-      transform:translateX(154px) translateY(-184px);
-    }
-    
-    .umur {
-      display: inline-block;
-      font-family: "Orbitron", monospace;
-      font-size: 12px;
-      transform:translateX(6px) translateY(-4px);
-    }
-    
-    .box-perkenalan {
-      width: 458px;
-      height: 100px;
-      background: #fff;
-      transform:translateX(50px) translateY(-210px);
-      border:3px solid #4A1D96;
-      box-shadow:4px 6px 0 #4A1D96;
-    }
-    
-    .kata-perkenalan {
-      font-family: "Share Tech Mono", sans-serif;
-      display: inline-block;
-      font-size: 15px;
-      transform:translateX(15px) translateY(17px);
-    }
-    
-    .hobi{
-      display: inline-block;
-      transform:translateY(-213px) translateX(235px);
-      font-family: "Orbitron", monospace;
-      font-size: 11px;
-    }
-    
-    .hobi-svg{
-      color: #4A1D96;
-      transform:translateX(235px) translateY(-207px);
-    }
-    
-    .box-sosmed {
-      width: 520px;
-      height: 580px;
-      background: #fff;
-      border:3px solid #4A1D96;
-      box-shadow:4px 6px 0 #4A1D96;
-      transform:translateX(20px) translateY(-85px);
-    }
-    
-    .iconsosmed-svg {
-      color: white;
-      transform:translateX(12px) translateY(13px);
-    }
-    
-    .boxicon-sosmed {
-      width: 60px;
-      height: 60px;
-      background: #4A1D96;
-      outline: 3px solid black;
-      transform:translateX(27px) translateY(30px);
-    }
-    
-    .text-sosmed {
-      display: inline-block;
-      font-size: 26px;
-      font-family: "Orbitron", monospace;
-      transform:translateX(123px) translateY(-635px);
-    }
-    
-    .desc-sosmed {
-      display: inline-block;
-      font-size: 12px;
-      font-family: "Inter", sans-serif;
-      color: #4B5563;
-      transform:translateX(125px) translateY(-630px);
-    }
-    
-    .whatsapp-sosmed {
-      width: 460px;
-      height: 100px;
-      background: #fff;
-      border:3px solid #4A1D96;
-      box-shadow:4px 4px 0 #4A1D96;
-      transform:translateX(50px) translateY(-590px);
-    }
-    
-    .iconwhtsp-sosmed {
-      width: 90px;
-      height: 90px;
-      background: #fff;
-      outline: 2px solid #4A1D96;
-      transform:translateY(23px) translateX(20px);
-    }
-    
-    .whtsp-svg {
-      transform:translateY(13px) translateX(14px);
-      fill:green;
-    }
-    
-    .whatsapp-text {
-      display: inline-block;
-      font-size: 17px;
-      font-family: "Orbitron", monospace;
-      transform:translateX(60px) translateY(-440px);
-    }
-    
-    #joinSluran {
-      width: 73px;
-      height: 25px;
-      
-      background: #4A1D96;
-      font-family: "Inter", sans-serif;
-      transform:translateX(70px) translateY(-625px);
-      color: #fff;
-      
-      transition: transform .2 ease;
+    button{
+      border:none;
+      outline:none;
       cursor:pointer;
+      appearance:none;
     }
-    
-    .animasi {
+
+    button:active{
+      transform:scale(.97);
+    }
+
+    .marquee-box{
+      width:min(100%, 553px);
+      height:45px;
+      background:var(--primary);
+      color:#fff;
+      outline:5px solid #000;
+      border-radius:1px;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .marquee-text{
+      font-size:19px;
+      font-family:"Share Tech Mono", monospace;
+      white-space:nowrap;
+      display:block;
+      width:100%;
+    }
+
+    .kotak-bungkus{
+      width:min(100%, 525px);
+      min-height:80px;
+      background:#fff;
+      border-radius:3px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      border:3px solid var(--primary-dark);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .nama-kotak{
+      width:min(212px, 100%);
+      min-height:20px;
+      background:var(--primary);
+      border-radius:1px;
+      padding:14px 16px;
+      color:#fff;
+      text-align:center;
+      box-shadow:4px 3px 0 var(--primary-dark);
+      border:3px solid var(--primary-dark);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .text-nama{
+      display:inline-block;
+      font-size:19px;
+      line-height:1;
+      font-family:"Orbitron", sans-serif;
+      transform:translateY(-1px);
+    }
+
+    .color-system{
+      color:var(--accent);
+    }
+
+    .security-box{
+      width:min(188px, 100%);
+      min-height:35px;
+      background:var(--primary);
+      box-shadow:3px 4px 0 var(--primary-dark);
+      border:3px solid var(--primary-dark);
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      margin-left:auto;
+    }
+
+    .security-svg{
+      color:#fff;
+      flex-shrink:0;
+    }
+
+    .security-text{
+      display:inline-block;
+      font-family:"Orbitron", monospace;
+      font-size:12px;
+      line-height:1;
+      color:#fff;
+      white-space:nowrap;
+    }
+
+    .text-warna-security{
+      color:var(--success);
+    }
+
+    .perkenalan{
+      width:min(100%, 525px);
+      background:#fff;
+      box-shadow:var(--shadow);
+      border:3px solid var(--primary-dark);
+      position:relative;
+      padding:18px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      overflow:hidden;
+    }
+
+    .img-perkenalan{
+      width:140px;
+      height:140px;
+      border:3px solid var(--primary-dark);
+      box-shadow:4px 4px 0 var(--primary-dark);
+      object-fit:cover;
+      animation:breathe 4s ease-in-out infinite;
+      border-radius:2px;
+      margin-top:8px;
+    }
+
+    @keyframes breathe{
+      0%,100%{
+        transform:translateY(0) scale(1);
+      }
+      50%{
+        transform:translateY(-6px) scale(1.02);
+      }
+    }
+
+    .nama-perkenalan{
+      font-size:21px;
+      font-family:"Orbitron", monospace;
+      text-align:center;
+      line-height:1.1;
+      margin-top:4px;
+    }
+
+    .umur-perkenalan{
+      width:min(230px, 100%);
+      min-height:25px;
+      background:#fff;
+      outline:2px solid var(--primary-dark);
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:3px 8px;
+      justify-content:flex-start;
+    }
+
+    .umur-ultah{
+      color:var(--primary-dark);
+      flex-shrink:0;
+    }
+
+    .umur{
+      display:inline-block;
+      font-family:"Orbitron", monospace;
+      font-size:12px;
+      line-height:1;
+      transform:translateY(-1px);
+      white-space:nowrap;
+    }
+
+    .hobi-perkenalan{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+
+    .hobi-svg{
+      color:var(--primary-dark);
+      flex-shrink:0;
+    }
+
+    .hobi{
+      display:inline-block;
+      font-family:"Orbitron", monospace;
+      font-size:11px;
+      line-height:1.2;
+      white-space:nowrap;
+    }
+
+    .box-perkenalan{
+      width:min(100%, 458px);
+      min-height:100px;
+      background:#fff;
+      border:3px solid var(--primary-dark);
+      box-shadow:4px 6px 0 var(--primary-dark);
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+    }
+
+    .kata-perkenalan{
+      font-family:"Share Tech Mono", sans-serif;
+      display:block;
+      font-size:15px;
+      line-height:1.45;
+      color:var(--text);
+    }
+
+    .box-sosmed{
+      width:min(100%, 520px);
+      background:#fff;
+      border:3px solid var(--primary-dark);
+      box-shadow:4px 6px 0 var(--primary-dark);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .boxicon-sosmed{
+      width:60px;
+      height:60px;
+      background:var(--primary-dark);
+      outline:3px solid #000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .iconsosmed-svg{
+      color:#fff;
+      width:35px;
+      height:35px;
+    }
+
+    .sesitext-sosmed{
+      width:min(100%, 520px);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:flex-start;
+      padding:0 2px;
+    }
+
+    .text-sosmed{
+      display:block;
+      font-size:26px;
+      font-family:"Orbitron", monospace;
+      line-height:1.1;
+    }
+
+    .desc-sosmed{
+      display:block;
+      font-size:12px;
+      font-family:"Inter", sans-serif;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .whatsapp-sosmed,
+    .tiktok-sosmed{
+      width:100%;
+      max-width:460px;
+      min-height:100px;
+      background:#fff;
+      border:3px solid var(--primary-dark);
+      box-shadow:4px 4px 0 var(--primary-dark);
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .iconwhtsp-sosmed{
+      width:90px;
+      height:90px;
+      background:#fff;
+      outline:2px solid var(--primary-dark);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .whtsp-svg{
+      width:60px;
+      height:60px;
+      color:#25D366;
+      fill:currentColor;
+    }
+
+    .tiktok-svg{
+      width:58px;
+      height:58px;
+      color:#000;
+      fill:currentColor;
+      flex-shrink:0;
+    }
+
+    .whatsapp-text,
+    .tiktok-text{
+      display:block;
+      font-size:17px;
+      font-family:"Orbitron", monospace;
+      line-height:1.2;
+    }
+
+    .petunjuk{
+      display:block;
+      font-family:"Inter", sans-serif;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      margin-top:4px;
+    }
+
+    #joinSluran{
+      width:120px;
+      min-height:38px;
+      background:var(--primary-dark);
+      color:#fff;
+      font-family:"Inter", sans-serif;
+      transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+      box-shadow:4px 4px 0 #000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:8px 12px;
+      border-radius:2px;
+    }
+
+    #joinSluran span{
+      display:inline-block;
+      transform:translateY(-1px);
+    }
+
+    .bell-sosmed{
+      color:#fff;
+      flex-shrink:0;
+    }
+
+    .animasi{
       transform:scale(1.08);
     }
-    
-    #joinSluran span {
-      display: inline-block;
-      transform:translateX(2px) translateY(-2px);
+
+    #followTT{
+      width:min(100%, 170px);
+      min-height:38px;
+      background:#fff;
+      color:#000;
+      border:2px solid var(--primary-dark);
+      box-shadow:4px 4px 0 var(--primary-dark);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border-radius:2px;
     }
-    
-    .bell-sosmed {
-      transform:translateX(2px) translateY(3px);
+
+    #followTT span{
+      font-family:"Share Tech Mono", sans-serif;
+      font-size:14px;
+      line-height:1;
     }
-    
-    .tiktok-sosmed {
-      width: 460px;
-      height: 100px;
-      background: #fff;
-      border:3px solid #4A1D96;
-      box-shadow:4px 4px 0 #4A1D96;
-      transform:translateX(50px) translateY(-570px);
-    }
-    
-    .tiktok-svg {
-      transform:translateY(14px) translateX(10px);
-    }
-    
-    .tiktok-text {
-      display: inline-block;
-      font-family: "Orbitron", monospace;
-      transform:translateY(-438px) translateX(55px);
-    }
-    
-    #followTT {
-      width: 120px;
-      height: 25px;
-      background: white;
-      color: black;
-      transform:translateX(65px) translateY(-607px);
-    }
-    
-    #followTT span {
-      font-family: "Share Tech Mono", sans-serif;
-    }
-    
-    .petunjuk {
-      display: inline-block;
-      font-family: "Inter", sans-serif;
-      color: #4B5563;
-      font-size: 13px;
-      transform:translateY(-398px) translateX(-18px);
-    }
-    
+
     #preloader{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
-    transition:opacity .5s ease, visibility .5s ease;
-}
-
-#preloader.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-.loader{
-    width:60px;
-    height:60px;
-    border:6px solid rgba(255,255,255,.2);
-    border-top:6px solid #00e5ff;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-    margin-bottom:15px;
-}
-
-#preloader p{
-    color:#fff;
-    font-size:18px;
-    font-family:Arial,sans-serif;
-    letter-spacing:2px;
-}
-
-@keyframes spin{
-    from{
-        transform:rotate(0deg);
+      position:fixed;
+      inset:0;
+      background:#000;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+      transition:opacity .5s ease, visibility .5s ease;
     }
-    to{
-        transform:rotate(360deg);
+
+    #preloader.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
     }
-}
+
+    .loader{
+      width:60px;
+      height:60px;
+      border:6px solid rgba(255,255,255,.2);
+      border-top:6px solid #00e5ff;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+      margin-bottom:15px;
+    }
+
+    #preloader p{
+      color:#fff;
+      font-size:18px;
+      font-family:Arial,sans-serif;
+      letter-spacing:2px;
+    }
+
+    @keyframes spin{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+
+    @media (max-width: 560px){
+      body{
+        padding:10px;
+        background-size:28px 28px;
+      }
+
+      .marquee-text{
+        font-size:16px;
+      }
+
+      .text-nama{
+        font-size:17px;
+      }
+
+      .security-box{
+        margin-left:auto;
+        width:min(188px, 100%);
+      }
+
+      .nama-perkenalan{
+        font-size:18px;
+      }
+
+      .box-perkenalan{
+        min-height:auto;
+      }
+
+      .kata-perkenalan{
+        font-size:14px;
+      }
+
+      .text-sosmed{
+        font-size:21px;
+      }
+
+      .desc-sosmed{
+        font-size:11px;
+      }
+
+      .whatsapp-sosmed,
+      .tiktok-sosmed{
+        padding:12px;
+        gap:12px;
+      }
+
+      .whatsapp-text,
+      .tiktok-text{
+        font-size:15px;
+      }
+
+      .petunjuk{
+        font-size:12px;
+      }
+
+      #joinSluran,
+      #followTT{
+        width:100%;
+        max-width:170px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- HTML di sini -->
-
-<div class="marquee-box">
-  <marquee class="marquee-text" direction="left">
-     #TOP SECURITY EMERGENCY © TEAM DIVISION 2026
-  </marquee>
-</div>
-
-<div class="kotak-bungkus">
-  <div class="nama-kotak">
-    <span class="text-nama">RAPZY.<span class="color-system">SYSTEM</span></span>
+  <div class="marquee-box">
+    <marquee class="marquee-text" direction="left">
+      #TOP SECURITY EMERGENCY © TEAM DIVISION 2026
+    </marquee>
   </div>
-</div>
 
-<div class="security-box">
-  <svg class="security-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-  
-<span class="security-text">
-    <span class="text-warna-security">SECURITY</span> GRANTEED!
-  </span>
-</div>
-
-<div class="perkenalan">
-  <img class="img-perkenalan" src="https://files.catbox.moe/wlgyft.jpg">
-</div>
-
-<div class="umur-perkenalan">
-  <svg class="umur-ultah" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cake-icon lucide-cake"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>
-  
-  <span class="umur">
-    13Y.0
-  </span>
-</div>
-
-<div class="hobi-perkenalan">
-  <svg class="hobi-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scroll-text-icon lucide-scroll-text"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>
-  
-  <span class="hobi">
-    Create Any Website
-  </span>
-</div>
-
-<h1 class="nama-perkenalan">
-  RAPZY
-</h1>
-
-<div class="box-perkenalan">
-  <span class="kata-perkenalan">
-    "Hii world saya RAPZY. saya seorang siswa yang hobi <br> dengan coding/membuat website. Salam Kenal Brother!"
-  </span>
-</div>
-
-<div class="box-sosmed">
-  <div class="boxicon-sosmed">
-    <svg class="iconsosmed-svg" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+  <div class="kotak-bungkus">
+    <div class="nama-kotak">
+      <span class="text-nama">RAPZY.<span class="color-system">SYSTEM</span></span>
+    </div>
   </div>
-</div>
 
-<div class="sesitext-sosmed">
-  <h1 class="text-sosmed">
-    ALL SOSIAL MEDIA RAPZY
-  </h1>
-  
-  <h1 class="desc-sosmed">
-    Ikuti untuk pemberitahuan lebih lanjut <br> atau update tertentu melalui SOSIAL MEDIA. Ikuti sekarang juga!.
-  </h1>
-</div>
+  <div class="security-box">
+    <svg class="security-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
 
-<div class="whatsapp-sosmed">
-    <svg class="whtsp-svg" role="img" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    
-    <h1 class="whatsapp-text">
-      SALURAN WHATSAPP
-    </h1>
-</div>
+    <span class="security-text">
+      <span class="text-warna-security">SECURITY</span> GRANTEED!
+    </span>
+  </div>
 
-<button id="joinSluran">
-  <svg class="bell-sosmed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell-ring-icon lucide-bell-ring"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M22 8c0-2.3-.8-4.3-2-6"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/><path d="M4 2C2.8 3.7 2 5.7 2 8"/></svg>
-  
-  <span>JOIN!</span>
-</button>
+  <div class="perkenalan">
+    <img class="img-perkenalan" src="https://files.catbox.moe/wlgyft.jpg" alt="Foto RAPZY">
 
-<div class="tiktok-sosmed">
-  <svg class="tiktok-svg" role="img" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-  
-  <span class="tiktok-text">
-    ACCOUNT TIKTOK
-  </span>
-  
-  <span class="petunjuk">
-    <— Click for Follow my Account.
-  </span>
-</div>
+    <h1 class="nama-perkenalan">RAPZY</h1>
 
-<button id="followTT">
-  <span>
-    @rappvibecoders
-  </span>
-</button>
+    <div class="umur-perkenalan">
+      <svg class="umur-ultah" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/>
+        <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/>
+        <path d="M2 21h20"/>
+        <path d="M7 8v3"/>
+        <path d="M12 8v3"/>
+        <path d="M17 8v3"/>
+        <path d="M7 4h.01"/>
+        <path d="M12 4h.01"/>
+        <path d="M17 4h.01"/>
+      </svg>
 
-<div id="preloader">
-  <div class="loader"></div>
-  <p>Loading...</p>
-</div>
+      <span class="umur">13Y.0</span>
+    </div>
 
-<script>
-    
-const joinSluran = document.getElementById("joinSluran");
-const folowTT = document.getElementById("followTT");
+    <div class="hobi-perkenalan">
+      <svg class="hobi-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 12h-5"/>
+        <path d="M15 8h-5"/>
+        <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+        <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
+      </svg>
 
-joinSluran.onclick = function () {
-  
-  window.location.href = "https://whatsapp.com/channel/0029VbDC9Ec2phHOKJ9SjQ0B";
-}
+      <span class="hobi">Create Any Website</span>
+    </div>
 
-followTT.onclick= function () {
-  
-  window.location.href = "https://tiktok.com/@rappvibecoders";
-}
+    <div class="box-perkenalan">
+      <span class="kata-perkenalan">"Hii world saya RAPZY. saya seorang siswa yang hobi <br> dengan coding/membuat website. Salam Kenal Brother!"</span>
+    </div>
+  </div>
 
-window.addEventListener("load", () => {
-    const loader = document.getElementById("preloader");
+  <div class="box-sosmed">
+    <div class="boxicon-sosmed">
+      <svg class="iconsosmed-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+    </div>
 
-    setTimeout(() => {
+    <div class="sesitext-sosmed">
+      <h1 class="text-sosmed">ALL SOSIAL MEDIA RAPZY</h1>
+      <h1 class="desc-sosmed">Ikuti untuk pemberitahuan lebih lanjut <br> atau update tertentu melalui SOSIAL MEDIA. Ikuti sekarang juga!.</h1>
+    </div>
+
+    <div class="whatsapp-sosmed">
+      <div class="iconwhtsp-sosmed">
+        <svg class="whtsp-svg" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <title>WhatsApp</title>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+      </div>
+
+      <div>
+        <h1 class="whatsapp-text">SALURAN WHATSAPP</h1>
+        <span class="petunjuk">← Click for Follow my Account.</span>
+      </div>
+    </div>
+
+    <button id="joinSluran">
+      <svg class="bell-sosmed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10.268 21a2 2 0 0 0 3.464 0"/>
+        <path d="M22 8c0-2.3-.8-4.3-2-6"/>
+        <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>
+        <path d="M4 2C2.8 3.7 2 5.7 2 8"/>
+      </svg>
+      <span>JOIN!</span>
+    </button>
+
+    <div class="tiktok-sosmed">
+      <svg class="tiktok-svg" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <title>TikTok</title>
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+      </svg>
+
+      <div>
+        <h1 class="tiktok-text">ACCOUNT TIKTOK</h1>
+        <span class="petunjuk">← Click for Follow my Account.</span>
+      </div>
+    </div>
+
+    <button id="followTT">
+      <span>@rappvibecoders</span>
+    </button>
+  </div>
+
+  <div id="preloader">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
+
+  <script>
+    const joinSluran = document.getElementById("joinSluran");
+    const followTT = document.getElementById("followTT");
+
+    joinSluran.onclick = function () {
+      window.location.href = "https://whatsapp.com/channel/0029VbDC9Ec2phHOKJ9SjQ0B";
+    };
+
+    followTT.onclick = function () {
+      window.location.href = "https://tiktok.com/@rappvibecoders";
+    };
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("preloader");
+
+      setTimeout(() => {
         loader.classList.add("hide");
-    }, 800); // Lama loading (ms)
-});
-</script>
-
+      }, 800);
+    });
+  </script>
 </body>
-	</html>
+</html>
